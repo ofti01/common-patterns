@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/common-patterns.iml" filepath="$PROJECT_DIR$/.idea/common-patterns.iml" />
+      <module fileurl="file://$PROJECT_DIR$/level-service/level-service.iml" filepath="$PROJECT_DIR$/level-service/level-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/student-service/student-service.iml" filepath="$PROJECT_DIR$/student-service/student-service.iml" />
     </modules>
   </component>
