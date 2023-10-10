@@ -1,0 +1,36 @@
+version: '3.9'
+services:
+  student-service:
+    build:
+      context: .
+      dockerfile: student-service/Dockerfile
+    container_name: student-service
+    image: student-service:latest
+    networks:
+      - mynet
+  level-service:
+    build:
+      context: .
+      dockerfile: level-sevice/Dockerfile
+    container_name: level-service
+    image: level-service:latest
+    networks:
+      - mynet
+  mongodb:
+    image: mongo:latest
+    container_name: "mongodb"
+    ports:
+      - "27017:27017"
+  mysqldb:
+    restart: unless-stopped
+    image: mysql:latest
+    ports:
+      - "3306:3306"
+    container_name: "mysqldb"
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=student-service
+    volumes:
+      - ./mysql-order:/data/mysql
+networks:
+  mynet:
