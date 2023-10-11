@@ -1,0 +1,12 @@
+management:
+  endpoint:
+    shutdown:
+      enabled: true
+
+spring:
+  datasource:
+    url: mongodb://mongodb:3306/level-service
+    username: root
+    password: root
+server:
+  port: 8080
