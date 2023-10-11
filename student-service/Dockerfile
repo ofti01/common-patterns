@@ -1,3 +1,4 @@
+
 #use an official java image
 FROM openjdk:17-alpine
 
@@ -5,11 +6,7 @@ FROM openjdk:17-alpine
 WORKDIR /app
 
 #copy the jar file to the container
-COPY target/*.jar app.jar
+COPY *.jar /app/app.jar
 
-#expose port for the application
-EXPOSE 8088
-
-#Set the command to run the JAR file
-
+# Set the command to run the JAR file
 CMD ["java", "-jar", "app.jar"]

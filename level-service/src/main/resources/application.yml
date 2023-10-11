@@ -5,8 +5,8 @@ management:
 
 spring:
   datasource:
-    url: mongodb://mongo:3306/level-service
+    url: mongodb://mongodb:3306/level-service
     username: root
     password: root
 server:
-  port: 8086
+  port: 8080
