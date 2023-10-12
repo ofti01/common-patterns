@@ -20,7 +20,7 @@ jobs:
   build:
     strategy:
       matrix:
-        image_name: ["student-service","level-service"]
+        images: ["student-service","level-service"]
     runs-on: ubuntu-latest
 
     steps:
@@ -33,7 +33,7 @@ jobs:
           cache: maven
 
       - name: Build Jar file
-        working-directory: ${{matrix.image_name}}
+        working-directory: ${{matrix.images}}
         run: mvn clean package -DskipTests
 
       - name: Build the Docker image
@@ -49,16 +49,16 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Extract image metadata for ${{ matrix.image_name }}
+      - name: Extract image metadata for ${{ matrix.images }}
         id: meta
         uses: docker/metadata-action@v4
         with:
-          images: ${{ secrets.DOCKER_USERNAME }}/${{ matrix.image_name }}
+          images: ${{ secrets.DOCKER_USERNAME }}/${{ matrix.images }}
 
-      - name: Build and push ${{ matrix.image_name }}
+      - name: Build and push ${{ matrix.images }}
         uses: docker/build-push-action@v4
         with:
-          context: ${{ matrix.image_name }}
+          context: ${{ matrix.images }}
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
