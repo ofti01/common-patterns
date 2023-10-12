@@ -20,7 +20,7 @@ jobs:
   build:
     strategy:
       matrix:
-        images: ["student-service","level-service"]
+        images: ["student-service","level-sevice"]
     runs-on: ubuntu-latest
 
     steps:
