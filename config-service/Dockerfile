@@ -1,12 +1,6 @@
-
-#use an official java image
-FROM openjdk:17-alpine
-
-#Set working directory in the container
+FROM amazoncorretto:17-alpine
+RUN mkdir /app
+COPY config-service-0.0.1-SNAPSHOT.jar /app/app.jar
 WORKDIR /app
-
-#copy the jar file to the container
-COPY *.jar /app/app.jar
-
-# Set the command to run the JAR file
-CMD ["java", "-jar", "app.jar"]
+EXPOSE 8080
+ENTRYPOINT ["java", "-jar", "app.jar"]
