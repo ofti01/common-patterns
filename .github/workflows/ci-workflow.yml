@@ -36,7 +36,7 @@ jobs:
         working-directory: ${{matrix.images}}
         run: |
            mvn clean package -DskipTests
-           mv build/libs/$(ls build/libs) app.jar
+           mv target/$(ls target) app.jar
 
       - name: Build the Docker image
         run: docker-compose build --no-cache --force-rm
