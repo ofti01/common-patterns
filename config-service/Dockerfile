@@ -1,6 +1,15 @@
-FROM amazoncorretto:17-alpine
-RUN mkdir /app
-COPY app.jar /app/app.jar
+#use an official java image
+FROM openjdk:17-alpine
+
+#Set working directory in the container
 WORKDIR /app
+
+#copy the jar file to the container
+COPY *.jar app.jar
+
+#expose port for the application
 EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+#Set the command to run the JAR file
+
+CMD ["java", "-jar", "app.jar"]
