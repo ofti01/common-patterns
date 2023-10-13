@@ -1,10 +1,20 @@
 version: '3.9'
 services:
+  config-service:
+    build:
+      context: .
+      dockerfile: config-service/Dockerfile
+    restart: on-failure
+    image: config-service:latest
+    ports:
+      - "8090:8090"
+    networks:
+        - mynet
   student-service:
     build:
       context: .
       dockerfile: student-service/Dockerfile
-    container_name: student-service
+    restart: on-failure
     image: student-service:latest
     networks:
       - mynet
@@ -12,7 +22,7 @@ services:
     build:
       context: .
       dockerfile: level-sevice/Dockerfile
-    container_name: level-service
+    restart: on-failure
     image: level-service:latest
     networks:
       - mynet
