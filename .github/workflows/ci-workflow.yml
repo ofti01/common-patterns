@@ -34,10 +34,8 @@ jobs:
 
       - name: Build Jar file
         working-directory: ${{matrix.images}}
-        run: |
-          mvn clean package -DskipTests
-          mv target/$(ls target) app.jar
-
+        run: mvn clean install -DskipTests
+        
       - name: Build the Docker image
         run: docker-compose build --no-cache --force-rm
 
