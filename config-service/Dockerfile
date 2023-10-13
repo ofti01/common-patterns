@@ -1,8 +1,12 @@
+
 #use an official java image
 FROM openjdk:17-alpine
 
-RUN mkdir /app
-COPY *.jar /app/app.jar
+#Set working directory in the container
 WORKDIR /app
-EXPOSE 8080
-ENTRYPOINT ["java", "-jar", "app.jar"]
+
+#copy the jar file to the container
+COPY *.jar /app/app.jar
+
+# Set the command to run the JAR file
+CMD ["java", "-jar", "app.jar"]
