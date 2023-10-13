@@ -1,5 +1,4 @@
 
-
 #use an official java image
 FROM openjdk:17-alpine
 
