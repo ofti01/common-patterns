@@ -1,6 +1,6 @@
 FROM amazoncorretto:17-alpine
 RUN mkdir /app
-COPY *.jar /app/app.jar
+COPY app.jar /app/app.jar
 WORKDIR /app
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "app.jar"]
