@@ -1,11 +1,11 @@
 FROM yannoff/maven:3.8.5-openjdk-17-alpine as build
-WORKDIR /home/app/
-COPY . /home/app/
+WORKDIR /app
+COPY . /app/
 RUN mvn clean package -DskipTests=true
 
 
 #use an official java image
 FROM openjdk:17-alpine
-COPY --from=build /home/app/target/*.jar /usr/local/lib/app.jar
-EXPOSE 8090
-ENTRYPOINT ["java","-jar","/app.jar"]
+WORKDIR /app
+COPY --from=build /app/target/*.jar app.jar
+ENTRYPOINT ["java","-jar","/app/app.jar"]
