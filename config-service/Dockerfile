@@ -1,4 +1,4 @@
-FROM maven:3-openjdk-17 as build
+FROM yannoff/maven:3.8.5-openjdk-17-alpine as build
 WORKDIR /home/app/
 COPY . /home/app/
 RUN mvn clean package -DskipTests=true
