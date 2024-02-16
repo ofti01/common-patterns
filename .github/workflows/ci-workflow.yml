@@ -45,4 +45,4 @@ jobs:
         with:
           context: ${{ matrix.image_name }}
           push: true
-          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/${{ matrix.image_name }}:v1.0.0
+          tags: v1.0.0
