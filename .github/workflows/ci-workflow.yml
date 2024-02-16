@@ -1,14 +1,16 @@
 name: build and push microservices
 
+
 on:
-  push:
-    branches:
-      - master
+  pull_request:
+    branches: [ "main" ]
+  push :
+    branches: [ "main" ]
 jobs:
   build:
     strategy:
       matrix:
-        image_name: [ "level-service" ]
+        image_name: [ "level-service","student-service" ]
     runs-on: ubuntu-latest
 
     steps:
@@ -22,9 +24,13 @@ jobs:
           distribution: 'temurin'
           cache: 'maven'
 
-      - name: Build with Maven
+      - name: Build with Maven ${{matrix.image_name}}
         working-directory: ${{matrix.image_name}}
-        run: mvn -B package --file pom.xml
+        run: mvn -B clean package --file pom.xml
+
+      - name: Test ${{matrix.image_name}}
+        working-directory: ${{matrix.image_name}}
+        run: mvn -B test --file pom.xml
 
       - uses: actions/checkout@v3
       - name: Log in to Docker Hub
