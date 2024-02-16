@@ -45,5 +45,5 @@ jobs:
         with:
           context: ${{ matrix.image_name }}
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: latest
           labels: ${{ steps.meta.outputs.labels }}
