@@ -3,9 +3,9 @@ name: build and push microservices
 
 on:
   pull_request:
-    branches: [ "main" ]
+    branches: [ "master" ]
   push :
-    branches: [ "main" ]
+    branches: [ "master" ]
 jobs:
   build:
     strategy:
