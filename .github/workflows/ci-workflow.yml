@@ -46,4 +46,4 @@ jobs:
           context: ${{ matrix.image_name }}
           push: true
           image: ${{ secrets.DOCKER_USERNAME }}/${{matrix.image_name}}
-          tags: ${{ matrix.image_name }}:latest
+          tags: ${{ matrix.image_name }}:v1.0.0
