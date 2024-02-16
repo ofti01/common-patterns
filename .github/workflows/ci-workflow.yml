@@ -33,7 +33,7 @@ jobs:
         run: mvn -B test --file pom.xml
 
       - name: Dockerized & Push Docker Image ${{matrix.image_name}}
-        uses: mr-smothers-excellent/docker-build-push@v6
+        uses: mr-smithers-excellent/docker-build-push@v6
         with:
             image: ${{ secrets.DOCKER_USERNAME }}/${{matrix.image_name}}
             tags: latest
