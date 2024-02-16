@@ -34,4 +34,4 @@ EXPOSE 8080
 
 # Set the entrypoint command for running the application
 
-ENTRYPOINT ["java", "-jar", "product-service.jar"]
+ENTRYPOINT ["java", "-jar", "student-service.jar"]
