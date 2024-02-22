@@ -38,7 +38,7 @@ jobs:
             projectBaseDir: ${{matrix.image_name}}
             args: >
                -Dsonar.organization=my-org
-               -Dsonar.projectKey= ${{matrix.image_name}}
+               -Dsonar.projectKey=my-scan
         env:
             SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
             SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
