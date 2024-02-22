@@ -52,8 +52,7 @@ jobs:
         env:
           SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
           SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
-        run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=commons-patterns
-            
+        run: mmvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=my-project
             
       - name: Dockerized & Push Docker Image ${{matrix.image_name}}
         uses: mr-smithers-excellent/docker-build-push@v6
