@@ -7,4 +7,5 @@ spring:
     password:
     driver-class-name: org.h2.Driver
 sonar:
-  exclusions: 'target/*.java'
+  java:
+    binaries: '**/target/classes'
