@@ -11,6 +11,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
@@ -45,6 +48,19 @@ public class DepartmentServiceTests {
         //Asset
 
 
+        Assertions.assertThat(departmentDtoList).isNotNull();
+    }
+
+    @Test
+    public void findAll_DepartmemtService_ReturnResponseDto(){
+        //Arrange
+        Page<Department> departments = Mockito.mock(Page.class);
+
+        //Act
+        when(departmentRepository.findAll(Mockito.any(Pageable.class))).thenReturn(departments);
+
+        //Assert
+        List<DepartmentDto> departmentDtoList = departmentService.findAll();
         Assertions.assertThat(departmentDtoList).isNotNull();
     }
 
