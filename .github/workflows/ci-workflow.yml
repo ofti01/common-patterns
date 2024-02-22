@@ -33,15 +33,14 @@ jobs:
         run: mvn -B test --file pom.xml
 
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@v1
-        with:
-            projectBaseDir: .
-            args: >
-               -Dsonar.organization=my-org
-               -Dsonar.projectKey=${{matrix.image_name}}
+        uses: kitabisa/sonarqube-action@v1.2.0
         env:
-            SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
-            SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
+            SONAR_SCANNER_OPTS: -X
+        with:
+            host: ${{ secrets.SONARQUBE_HOST }}
+            login: ${{ secrets.SONARQUBE_TOKEN }}
+            projectBaseDir: ${{matrix.image_name}}
+            projectKey: ${{matrix.image_name}}
 
       - name: Dockerized & Push Docker Image ${{matrix.image_name}}
         uses: mr-smithers-excellent/docker-build-push@v6
