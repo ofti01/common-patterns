@@ -39,8 +39,8 @@ public class DepartmentServiceTests {
 
         List<Department> departments = new ArrayList<>();
         departments.add(department);
+
         //Act
-        Object pokemon;
         when(departmentRepository.findDepartmentByNameContainingIgnoreCase("ysi")).thenReturn(departments);
 
         List<DepartmentDto> departmentDtoList = departmentService.findByName("ysi");
@@ -52,7 +52,7 @@ public class DepartmentServiceTests {
     }
 
     @Test
-    public void findAll_DepartmemtService_ReturnResponseDto(){
+    public void findAllDepartmemtServiceReturnResponseDto(){
         //Arrange
         List<Department> departments = Mockito.mock(List.class);
 

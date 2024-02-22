@@ -18,7 +18,7 @@ public class DepartmentRepositoryTests {
     private DepartmentRepository departmentRepository;
 
     @Test
-    public void departmentRepository_findDepartmentByName_ReturnOneDepartment(){
+    public void departmentRepositoryFindDepartmentByNameReturnOneDepartment(){
         //Arrange
         Department department = Department.builder()
                 .name("filo")
