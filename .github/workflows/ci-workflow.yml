@@ -29,7 +29,7 @@ jobs:
         working-directory: ${{matrix.image_name}}
         run: mvn -B clean package --file pom.xml
 
-      - name: SonarQube Scan  ${{matrix.image_name}}
+      - name: Scan with Sonarqube  ${{matrix.image_name}}
         uses: sonarsource/sonarqube-scan-action@master
         with:
           projectBaseDir: ${{matrix.image_name}}/src
