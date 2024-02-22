@@ -32,6 +32,16 @@ jobs:
         working-directory: ${{matrix.image_name}}
         run: mvn -B test --file pom.xml
 
+      - name: SonarQube Scan
+        uses: kitabisa/sonarqube-action@v1.2.0
+        env:
+            SONAR_SCANNER_OPTS: -X
+        with:
+            host: ${{ secrets.SONARQUBE_HOST }}
+            login: ${{ secrets.SONARQUBE_TOKEN }}
+            projectBaseDir: "src/"
+            projectKey: "commons-patterns"
+
       - name: Dockerized & Push Docker Image ${{matrix.image_name}}
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
