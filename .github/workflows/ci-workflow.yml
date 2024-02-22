@@ -40,7 +40,6 @@ jobs:
                -Dsonar.organization=my-org
                -Dsonar.projectKey=${{matrix.image_name}}
         env:
-            SONAR_SCANNER_OPTS: -X
             SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
             SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
 
