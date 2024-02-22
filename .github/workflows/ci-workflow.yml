@@ -35,6 +35,7 @@ jobs:
           projectBaseDir: ${{matrix.image_name}}/src
           args: >
             -Dsonar.projectKey=${{matrix.image_name}}
+            -Dsonar.java.binaries=target/classes
         env:
             SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
             SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
