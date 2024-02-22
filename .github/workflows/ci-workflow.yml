@@ -32,15 +32,15 @@ jobs:
         working-directory: ${{matrix.image_name}}
         run: mvn -B test --file pom.xml
 
-      - uses: actions/checkout@v2
-        with:
-            # Disabling shallow clone is recommended for improving relevancy of reporting
-          fetch-depth: 0
       - name: SonarQube Scan
-        uses: sonarsource/sonarqube-scan-action@master
+        uses: kitabisa/sonarqube-action@v1.2.0
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }} //Sonar Token generated
-          SONAR_HOST_URL: ${{ secrets.SONARQUE_HOST }} example URL (https://sq.bswlog.co.in/)
+            SONAR_SCANNER_OPTS: -X
+        with:
+            host: ${{ secrets.SONARQUBE_HOST }}
+            login: ${{ secrets.SONARQUBE_TOKEN }}
+            projectBaseDir: ${{matrix.image_name}}
+            projectKey: "commons-patterns"
 
       - name: Dockerized & Push Docker Image ${{matrix.image_name}}
         uses: mr-smithers-excellent/docker-build-push@v6
