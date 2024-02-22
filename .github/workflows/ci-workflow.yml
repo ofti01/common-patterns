@@ -39,8 +39,8 @@ jobs:
         with:
             host: ${{ secrets.SONARQUBE_HOST }}
             login: ${{ secrets.SONARQUBE_TOKEN }}
-            projectBaseDir: ${{matrix.image_name}}
-            projectKey: "commons-patterns"
+            projectBaseDir: "src/"
+            projectKey: ${{matrix.image_name}}
 
       - name: Dockerized & Push Docker Image ${{matrix.image_name}}
         uses: mr-smithers-excellent/docker-build-push@v6
