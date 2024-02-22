@@ -16,7 +16,8 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-
+        with:
+           fetch-depth: 0
       - name: Set up JDK 17
         uses: actions/setup-java@v3
         with:
@@ -32,12 +33,13 @@ jobs:
         working-directory: ${{matrix.image_name}}
         run: mvn -B test --file pom.xml
 
-      - uses: kitabisa/sonarqube-action@master
+      - name: SonarQube Scan
+        working-directory: ${{matrix.image_name}}
+        uses: kitabisa/sonarqube-action@v1.2.0
         with:
-           host: ${{ secrets.SONARQUBE_HOST }}
-           login: ${{ secrets.SONARQUBE_TOKEN }}
-           projectBaseDir: ${{matrix.image_name}}
-           projectKey: ${{matrix.image_name}}
+            host: ${{ secrets.SONARQUBE_HOST }}
+            login: ${{ secrets.SONARQUBE_TOKEN }}
+            projectKey: ${{matrix.image_name}}
 
       - name: Dockerized & Push Docker Image ${{matrix.image_name}}
         uses: mr-smithers-excellent/docker-build-push@v6
