@@ -3,6 +3,7 @@ package com.lotfi.departmentservice.service;
 import com.lotfi.departmentservice.dto.DepartmentDto;
 import com.lotfi.departmentservice.model.Department;
 import com.lotfi.departmentservice.repository.DepartmentRepository;
+import com.lotfi.departmentservice.service.impl.DepartmentServiceImpl;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -24,7 +25,7 @@ public class DepartmentServiceTests {
     private DepartmentRepository departmentRepository;
 
     @InjectMocks
-    private DepartmentService departmentService;
+    private DepartmentServiceImpl departmentService;
 
     @Test
     public void DepartmentService_findByName_ReturnDocumentDto(){
