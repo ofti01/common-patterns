@@ -32,16 +32,25 @@ jobs:
         working-directory: ${{matrix.image_name}}
         run: mvn -B test --file pom.xml
 
-      - name: SonarQube Scan
-        uses: kitabisa/sonarqube-action@v1.2.0
-        env:
-            SONAR_SCANNER_OPTS: -X
+      - name: Cache SonarQube packages
+        uses: actions/cache@v1
         with:
-            host: ${{ secrets.SONARQUBE_HOST }}
-            login: ${{ secrets.SONARQUBE_TOKEN }}
-            projectBaseDir: "src/"
-            projectKey: "commons-patterns"
-
+            path: ~/.sonar/cache
+            key: ${{ runner.os }}-sonar
+            restore-keys: ${{ runner.os }}-sonar
+      - name: Cache Maven packages
+        uses: actions/cache@v1
+        with:
+          path: ~/.m2
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+      - name: Build and analyze
+        env:
+          SONAR_TOKEN: ${{ secrets.SONARQUBE_TOKEN }}
+          SONAR_HOST_URL: ${{ secrets.SONARQUBE_HOST }}
+          run: mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.projectKey=commons-patterns
+            
+            
       - name: Dockerized & Push Docker Image ${{matrix.image_name}}
         uses: mr-smithers-excellent/docker-build-push@v6
         with:
