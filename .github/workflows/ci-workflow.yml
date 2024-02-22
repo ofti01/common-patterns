@@ -33,9 +33,9 @@ jobs:
         working-directory: ${{matrix.image_name}}
         run: mvn -B test --file pom.xml
 
-      - name: SonarQube Scan
+      - name: SonarQube Scan ${{matrix.image_name}}
         working-directory: ${{matrix.image_name}}
-        uses: kitabisa/sonarqube-action@v1.2.0
+        uses: kitabisa/sonarqube-action@master
         with:
             host: ${{ secrets.SONARQUBE_HOST }}
             login: ${{ secrets.SONARQUBE_TOKEN }}
