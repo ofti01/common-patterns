@@ -54,10 +54,10 @@ public class DepartmentServiceTests {
     @Test
     public void findAll_DepartmemtService_ReturnResponseDto(){
         //Arrange
-        Page<Department> departments = Mockito.mock(Page.class);
+        List<Department> departments = Mockito.mock(List.class);
 
         //Act
-        when(departmentRepository.findAll(Mockito.any(Pageable.class))).thenReturn(departments);
+        when(departmentRepository.findAll()).thenReturn(departments);
 
         //Assert
         List<DepartmentDto> departmentDtoList = departmentService.findAll();
